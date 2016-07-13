@@ -22,12 +22,43 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('landing', {
     url: '/',
-    templateUrl: 'templates/landing.html',
+    templateUrl: 'templates/landing.html'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html'
+  })
+    .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html'
+  })
+   .state('main', {
+    url: '/main',
+    templateUrl: 'templates/main.html'
+  })
+
+ .state('tops', {
+    url: '/tops',
+    templateUrl: 'templates/tops.html'
   })
   
+ .state('bottoms', {
+    url: '/bottoms',
+    templateUrl: 'templates/bottoms.html'
+  })
+.state('feed', {
+    url: '/feed',
+    templateUrl: 'templates/feed.html'
+  })
+
+
+
 });
+
