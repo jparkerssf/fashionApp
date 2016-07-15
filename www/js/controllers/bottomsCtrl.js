@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller("bottomsCtrl", ['$scope', '$cordovaCamera', function($scope, $cordovaCamera) {
+.controller("bottomsCtrl", ['$scope', '$cordovaCamera',  '$ionicHistory', function($scope, $cordovaCamera,$ionicHistory) {
 
     $scope.takePicture = function() {
         var options = {
@@ -22,5 +22,10 @@ angular.module('starter.controllers')
         });
     };
 
+   $scope.goBack = function() {
+
+      $ionicHistory.goBack();
+ };
+  
 
 }]);

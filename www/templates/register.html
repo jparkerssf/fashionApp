@@ -1,31 +1,28 @@
 <ion-view view-title="MYFashionAPP">
     <ion-nav-buttons></ion-nav-buttons>
     <ion-content class="padding">
-        
-<div class="col text-center">
-    
-       <div class="list">
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Username</span>
-    <input type="text" placeholder="noah22">
-  </label>
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Password</span>
-    <input type="password" placeholder="john123">
-  </label>
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Email</span>
-    <input type="text" placeholder="john@suhr.com">
-  </label>
-</div>
+        <form name="registerForm" ng-submit="signupForm(registerForm)" novalidate>
+            <div class="col text-center">
 
-        <button class="button button-full button-royal" ui-sref="tabs.home">
+                <div class="list">
+                    <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : registerForm.username.$invalid && registerForm.$submitted}">
+    <span class="input-label">Username</span>
+    <input type="text" placeholder="noah22" name="username"ng-model="user.username" required >
+  </label>
+                    <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : registerForm.password.$invalid && registerForm.$submitted}">
+    <span class="input-label">Password</span>
+    <input type="password" name="password" placeholder="john123" ng-model= "user.password" required>
+  </label>
+                    <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : registerForm.email.$invalid && registerForm.$submitted}">
+    <span class="input-label">Email</span>
+    <input type="text" name ="email" placeholder="john@suhr.com" ng-model="user.email" required >
+  </label>
+
+
+                    <button class="button button-full button-royal" type="submit">
   Register
 </button>
-</div>
+        </form>
+
     </ion-content>
 </ion-view>
-
-
-
-  

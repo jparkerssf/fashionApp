@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller("topsCtrl", ['$scope', '$cordovaCamera', function($scope, $cordovaCamera) {
+.controller("topsCtrl", ['$scope', '$cordovaCamera', '$ionicHistory', function($scope, $cordovaCamera,$ionicHistory) {
 
     $scope.takePicture = function() {
         var options = {
@@ -21,6 +21,11 @@ angular.module('starter.controllers')
             // An error occured. Show a message to the user
         });
     };
+   
+    $scope.goBack = function() {
 
+      $ionicHistory.goBack();
+ };
+   
 
 }]);
