@@ -6,10 +6,25 @@
     <ion-content class="padding">
 
         <div ng-controller="topsCtrl">
-            <button class="button button-full button-royal" ng-click="takePicture()">
-  Add a Top
-</button>
+<!--            <button class="button button-full button-royal" ng-click="takePicture()">-->
+<!--  Add a Top-->
+<!--</button>-->
+<input type="file" name="pic" accept="image/*" multiple> Add a Top</input>
+
+
         </div>
+        <ks-swiper-container initial-slide="3" speed="2000" loop="true" show-nav-buttons="false" slides-per-view="3" space-between="5" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : false}}">
+    <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2]">
+        <img ng-src="img/icon-{{s}}.jpg" width="100%">
+    </ks-swiper-slide>            
+</ks-swiper-container>
+ 
+
+        
+        
+        
+        
+        
     </ion-content>
 
 

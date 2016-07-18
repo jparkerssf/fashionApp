@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller("topsCtrl", ['$scope', '$cordovaCamera', '$ionicHistory', function($scope, $cordovaCamera,$ionicHistory) {
+.controller("topsCtrl", ['$scope', '$cordovaCamera', '$ionicHistory',  function($scope, $cordovaCamera,$ionicHistory) {
 
     $scope.takePicture = function() {
         var options = {
@@ -26,6 +26,17 @@ angular.module('starter.controllers')
 
       $ionicHistory.goBack();
  };
+ 
+    $scope.onReadySwiper = function (swiper) {
+ 
+        swiper.on('slideChangeStart', function () {
+            console.log('slide start');
+        });
+         
+        swiper.on('onSlideChangeEnd', function () {
+            console.log('slide end');
+        });     
+    };
    
 
 }]);

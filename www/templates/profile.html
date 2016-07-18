@@ -1,10 +1,26 @@
 <ion-view view-title="USERNAME">
     <ion-nav-buttons></ion-nav-buttons>
     <ion-content class="padding">
-        
-    </ion-content>
-</ion-view>
+        <ion-card>
 
+          
 
-
+            <img  class = "image full">
+            <div class="list">
+              <h2> Comments</h2> 
+             <div> Hello</div>
+<div class="list list-inset">
+  <label class="item item-input">
+    <input type="text" placeholder="Post a comment:)" ng-model="comment">
+  </label>
   
+</div>
+
+            </div>
+        
+            <form  name ="comment" ng-click="submitPost(comment)" >
+            <button class="button button-royal" type="submit" >
+ Post
+</button>
+</form>
+</ion-view>

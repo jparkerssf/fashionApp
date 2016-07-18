@@ -64,6 +64,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'RESTServ
  .state('profile', {
       url: '/profile',
       templateUrl: 'templates/profile.html'
+   
     })
     
      .state('comments', {
@@ -99,7 +100,8 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'RESTServ
     url: '/profile',
     views: {
       'profile': {
-        templateUrl: 'templates/profile.html'
+        templateUrl: 'templates/profile.html',
+        controller:'profileCtrl'
       
       }
     }
