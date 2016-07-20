@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'RESTServices'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTServices'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,92 +25,87 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'RESTServ
 
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
-  $stateProvider
-    .state('landing', {
-      url: '/',
-      templateUrl: 'templates/landing.html'
-    })
-    .state('register', {
-      url: '/register',
-      templateUrl: 'templates/register.html',
-      controller: 'registerCtrl'
-    })
-    .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'loginCtrl'
-    })
-   
-  .state('tops', {
-    url: '/tops',
-    templateUrl: 'templates/tops.html',
-    controller: 'topsCtrl'
-  })
+      $urlRouterProvider.otherwise('/');
+      $stateProvider
+        .state('landing', {
+          url: '/',
+          templateUrl: 'templates/landing.html'
+        })
+        .state('register', {
+          url: '/register',
+          templateUrl: 'templates/register.html',
+          controller: 'registerCtrl'
+        })
+        .state('login', {
+          url: '/login',
+          templateUrl: 'templates/login.html',
+          controller: 'loginCtrl'
+        })
 
-  .state('bottoms', {
-      url: '/bottoms',
-     templateUrl: 'templates/bottoms.html',
-     controller: 'bottomsCtrl'
-    })
-    .state('feed', {
-      url: '/feed',
-      templateUrl: 'templates/feed.html'
-    })
-.state('home', {
-      url: '/home',
-      templateUrl: 'templates/home.html'
-    })
- .state('profile', {
-      url: '/profile',
-      templateUrl: 'templates/profile.html'
-   
-    })
-    
-     .state('comments', {
-      url: '/comments',
-      templateUrl: 'templates/comments.html'
-    })
-    
-  
-.state('tabs', {
-  url: '/tabs',
-  abstract: true,
-  templateUrl: 'templates/tabs.html'
-})
-  .state('tabs.home', {
-    url: '/home',
-    views: {
-      'home': {
-        templateUrl: 'templates/home.html'
-      
-      }
-    }
-  })
-  .state('tabs.feed', {
-    url: '/feed',
-    views: {
-      'feed': {
-        templateUrl: 'templates/feed.html'
-      
-      }
-    }
-  })
-  .state('tabs.profile', {
-    url: '/profile',
-    views: {
-      'profile': {
-        templateUrl: 'templates/profile.html',
-        controller:'profileCtrl'
-      
-      }
-    }
-  })
- 
-  
-  
-  
- 
-    
+      .state('tops', {
+        url: '/tops',
+        templateUrl: 'templates/tops.html',
+        controller: 'topsCtrl'
+      })
+
+      .state('bottoms', {
+          url: '/bottoms',
+          templateUrl: 'templates/bottoms.html',
+          controller: 'bottomsCtrl'
+        })
+        .state('feed', {
+          url: '/feed',
+          templateUrl: 'templates/feed.html'
+        })
+        .state('home', {
+          url: '/home',
+          templateUrl: 'templates/home.html'
+        })
+
+
+      .state('tabs', {
+          url: '/tabs',
+          abstract: true,
+          templateUrl: 'templates/tabs.html'
+        })
+        .state('tabs.home', {
+          url: '/home',
+          views: {
+            'home': {
+              templateUrl: 'templates/home.html'
+
+            }
+          }
+        })
+        .state('tabs.feed', {
+          url: '/feed',
+          views: {
+            'feed': {
+              templateUrl: 'templates/feed.html'
+
+            }
+          }
+        })
+
+      .state('tabs.profile', {
+        url: '/profile',
+        views: {
+          'profile': {
+            templateUrl: 'templates/profile.html',
+            controller: 'profileCtrl',
+            resolve: {
+              mycomments: ['postRest','$window',
+                function(postRest,$window) {
+                  return postRest.get($window.localStorage.userID, $window.localStorage.token)
+                    .then(function(res) {
+                      return res.data;
+                    }, function(err) {
+                      alert("There was an error retrieving your information");
+                    })
+                }
+              ]
+            }
+          }
+        }
+      })
 });
-

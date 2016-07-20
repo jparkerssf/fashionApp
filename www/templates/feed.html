@@ -1,31 +1,27 @@
-<ion-view view-title="Fashionista Feed">
-    <ion-nav-buttons></ion-nav-buttons>
-    <ion-content class="padding">
-        <div class="list card">
+<ion-view view-title="Fashionistas">
+  <ion-nav-buttons></ion-nav-buttons>
+  <ion-content class="card-background-page">
+    <ion-card>
+      <img  ng-src="img/icon-1.png" width="370"/>
+      <div class="card-subtitle"><b>comments</b></div><br>
+      <div ng-repeat="comment in commentsArray">
+        <p>{{comment.Comment}}</p>
+      </div>
 
-  <div class="item item-avatar">
-    <img src="mcfly.jpg">
-    <h2>Marty McFly</h2>
-    <p>November 05, 1955</p>
-  </div>
+      <form name="postfield" ng-click="submitPost(postfield)">
 
-  <div class="item item-body">
-    <img class="full-image" src="delorean.jpg">
-    <p>
-      This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
-    </p>
-    <p>
-      <a href="#" class="subdued">1 Like</a>
-      <a href="#" class="subdued">5 Comments</a>
-    </p>
-  </div>
+        <label class="item item-input">
+            <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
+        </label>
+        <button class="button button-royal" type="submit">
+                     Post
+        </button>
+      </form>
+    </ion-card>
 
-</div>
-    </ion-content>
+
+  </ion-content>
+
 </ion-view>
 
-
-
-  
+</ion-view>

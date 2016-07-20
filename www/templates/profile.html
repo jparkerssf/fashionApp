@@ -1,26 +1,30 @@
-<ion-view view-title="USERNAME">
+<ion-view view-title="MYProfile">
     <ion-nav-buttons></ion-nav-buttons>
-    <ion-content class="padding">
+    <ion-content class="card-background-page">
         <ion-card>
-
-          
-
-            <img  class = "image full">
-            <div class="list">
-              <h2> Comments</h2> 
-             <div> Hello</div>
-<div class="list list-inset">
-  <label class="item item-input">
-    <input type="text" placeholder="Post a comment:)" ng-model="comment">
-  </label>
-  
-</div>
-
+            <div>
+            <img ng-src="{{Images.image}}"/>
             </div>
-        
-            <form  name ="comment" ng-click="submitPost(comment)" >
-            <button class="button button-royal" type="submit" >
- Post
-</button>
-</form>
+             <div class="card-subtitle"><b>comments</b></div>
+             <div ng-repeat="post in comment"> 
+             <p> {{post.Comment}}</p>
+             </div>
+            <!--<div ng-repeat="comment in commentsArray">-->
+            <!--    <p>{{comment.Comment}}</p>-->
+            <!--</div>-->
+
+            <form name="postfield" ng-click="submitPost(postfield)">
+
+         <label class="item item-input">
+            <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
+        </label>
+                <button class="button button-royal" type="submit" ng-click="reloadRoute()" ng-click="reloadPage">
+                     Post
+        </button>
+            </form>
+        </ion-card>
+
+
+    </ion-content>
+
 </ion-view>
