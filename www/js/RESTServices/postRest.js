@@ -17,25 +17,14 @@ angular.module("RESTServices")
 
   };
 
-  postRest.get = function(userID,token) {
-   token=$window.localStorage.token;
+  postRest.get = function(picID) {
+   // token=$window.localStorage.token;
    return $http({
-    url: "https://myfashion-jadtheparker.c9users.io/api/Comments/?filter[where][userID]=" + $window.localStorage.userID,
-    method: 'GET',
-    headers:  {
-     'Authorization': token
-    }
+    url: "https://myfashion-jadtheparker.c9users.io/api/Comments/?filter[where][imageID]=" + $window.localStorage.picID,
+    method: 'GET'
    });
   };
 
-
-
-
-
-
-
-
-
-
-
  }]);
+       
+       

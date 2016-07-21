@@ -3,10 +3,10 @@
     <ion-content class="card-background-page">
         <ion-card>
             <div>
-            <img ng-src="{{Images.image}}"/>
+            <img ng-src="{{image.image}}" width="300" height="300"/>
             </div>
              <div class="card-subtitle"><b>comments</b></div>
-             <div ng-repeat="post in comment"> 
+             <div ng-repeat="post in commentsArray"> 
              <p> {{post.Comment}}</p>
              </div>
             <!--<div ng-repeat="comment in commentsArray">-->

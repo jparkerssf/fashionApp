@@ -16,6 +16,7 @@ angular.module('starter.controllers')
                         $state.go('tabs.home');
                         $window.localStorage.token = response.data.id;
                         $window.localStorage.userID = response.data.userId;
+                     
                     }
                 }, function(error) {
                     if (error.status == 404) {

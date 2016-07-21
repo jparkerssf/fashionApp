@@ -25,87 +25,142 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTSer
 
 
 .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
-      $stateProvider
-        .state('landing', {
-          url: '/',
-          templateUrl: 'templates/landing.html'
-        })
-        .state('register', {
-          url: '/register',
-          templateUrl: 'templates/register.html',
-          controller: 'registerCtrl'
-        })
-        .state('login', {
-          url: '/login',
-          templateUrl: 'templates/login.html',
-          controller: 'loginCtrl'
-        })
+  $urlRouterProvider.otherwise('/');
+  $stateProvider
+    .state('landing', {
+      url: '/',
+      templateUrl: 'templates/landing.html'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'registerCtrl'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl'
+    })
 
-      .state('tops', {
-        url: '/tops',
-        templateUrl: 'templates/tops.html',
-        controller: 'topsCtrl'
-      })
+  .state('tops', {
+    url: '/tops',
+    templateUrl: 'templates/tops.html',
+    controller: 'topsCtrl'
+  })
 
-      .state('bottoms', {
-          url: '/bottoms',
-          templateUrl: 'templates/bottoms.html',
-          controller: 'bottomsCtrl'
-        })
-        .state('feed', {
-          url: '/feed',
-          templateUrl: 'templates/feed.html'
-        })
-        .state('home', {
-          url: '/home',
+  .state('bottoms', {
+      url: '/bottoms',
+      templateUrl: 'templates/bottoms.html',
+      controller: 'bottomsCtrl'
+    })
+   
+    .state('home', {
+      url: '/home',
+      templateUrl: 'templates/home.html'
+    })
+
+
+  .state('tabs', {
+      url: '/tabs',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
+    .state('tabs.home', {
+      url: '/home',
+      views: {
+        'home': {
           templateUrl: 'templates/home.html'
-        })
 
-
-      .state('tabs', {
-          url: '/tabs',
-          abstract: true,
-          templateUrl: 'templates/tabs.html'
-        })
-        .state('tabs.home', {
-          url: '/home',
-          views: {
-            'home': {
-              templateUrl: 'templates/home.html'
-
-            }
-          }
-        })
-        .state('tabs.feed', {
-          url: '/feed',
-          views: {
-            'feed': {
-              templateUrl: 'templates/feed.html'
-
-            }
-          }
-        })
-
-      .state('tabs.profile', {
-        url: '/profile',
-        views: {
-          'profile': {
-            templateUrl: 'templates/profile.html',
-            controller: 'profileCtrl',
-            resolve: {
-              mycomments: ['postRest','$window',
-                function(postRest,$window) {
-                  return postRest.get($window.localStorage.userID, $window.localStorage.token)
-                    .then(function(res) {
-                      return res.data;
-                    }, function(err) {
-                      alert("There was an error retrieving your information");
-                    })
-                }
-              ]
-            }
-          }
         }
-      })
+      }
+    })
+ .state('tabs.feed', {
+    url: '/feed',
+    views: {
+      'feed': {
+        templateUrl: 'templates/feed.html',
+        controller: 'feedCtrl',
+        resolve: {
+          mycomments: ['postRest', '$window',
+            function(postRest, $window) {
+              return postRest.get($window.localStorage.userID, $window.localStorage.token)
+                .then(function(res) {
+                  return res.data;
+                }, function(err) {
+                  alert("There was an error retrieving your information");
+                })
+            }
+          ],
+
+          myimages: ['$window', 'imageRest',
+            function( $window, imageRest) {
+              return imageRest.get()
+                .then(function(response) {
+                  if (response.status == 200) {
+                    $window.localStorage.picID = response.data.id;
+                    return response.data;
+                  
+                  }
+                }, function(error) {
+                  if (error.status == 404) {
+                    alert("Page not found!");
+                  }
+
+                  else if (error.status == 500) {
+                    alert("The world has ended");
+                  }
+                });
+            }
+          ]
+        }
+      }
+    }
+  })
+          
+          
+      
+  .state('tabs.profile', {
+    url: '/profile',
+    views: {
+      'profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl',
+        resolve: {
+          mycomments: ['postRest', '$window',
+            function(postRest, $window) {
+              return postRest.get($window.localStorage.userID, $window.localStorage.token)
+                .then(function(res) {
+                  return res.data;
+                }, function(err) {
+                  alert("There was an error retrieving your information");
+                })
+            }
+          ],
+
+          myimages: ['$window', 'imageRest',
+            function( $window, imageRest) {
+              return imageRest.get()
+                .then(function(response) {
+                  if (response.status == 200) {
+                    $window.localStorage.picID = response.data.id;
+                    return response.data;
+                  
+                  }
+                }, function(error) {
+                  if (error.status == 404) {
+                    alert("Page not found!");
+                  }
+
+                  else if (error.status == 500) {
+                    alert("The world has ended");
+                  }
+                });
+            }
+          ]
+
+
+        }
+      }
+    }
+  })
 });

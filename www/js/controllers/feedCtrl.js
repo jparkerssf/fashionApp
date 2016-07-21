@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
-    .controller('profileCtrl', ['$scope', '$state', '$window', 'mycomments', 'postRest', 'imageRest','myimages', function($scope, $state, $window, mycomments, postRest, imageRest,myimages) {
-        $scope.myprofile = mycomments;
+    .controller('feedCtrl', ['$scope', '$state','$window','mycomments', 'postRest','imageRest','myimages', function($scope,$state,$window,mycomments, postRest,imageRest,myimages){
+  
+         $scope.myprofile = mycomments;
         $scope.comments = {};
         $scope.commentsArray = [];
         $scope.image = {};
@@ -46,9 +47,8 @@ angular.module('starter.controllers')
                         console.log("The world has ended");
                     }
                 });
-                $scope.comments={};
+                 $scope.comments={};
         };
-        $scope.commentsArray = mycomments;
-        
-       
+       $scope.commentsArray = mycomments;
+
     }]);

@@ -1,27 +1,58 @@
 <ion-view view-title="Fashionistas">
-  <ion-nav-buttons></ion-nav-buttons>
-  <ion-content class="card-background-page">
-    <ion-card>
-      <img  ng-src="img/icon-1.png" width="370"/>
-      <div class="card-subtitle"><b>comments</b></div><br>
-      <div ng-repeat="comment in commentsArray">
-        <p>{{comment.Comment}}</p>
-      </div>
+   <ion-nav-buttons></ion-nav-buttons>
+    <ion-content class="card-background-page">
+        <ion-card>
+            <div>
+            <img ng-src="{{image.image}}" width="200" height="200"/>
+            </div>
+             <div class="card-subtitle"><b>comments</b></div>
+             <div ng-repeat="post in commentsArray"> 
+             <p> {{post.Comment}}</p>
+             </div>
+            <!--<div ng-repeat="comment in commentsArray">-->
+            <!--    <p>{{comment.Comment}}</p>-->
+            <!--</div>-->
 
-      <form name="postfield" ng-click="submitPost(postfield)">
+            <form name="postfield" ng-click="submitPost(postfield)">
 
-        <label class="item item-input">
+         <label class="item item-input">
             <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
         </label>
-        <button class="button button-royal" type="submit">
+                <button class="button button-royal" type="submit" ng-click="reloadRoute()" ng-click="reloadPage">
                      Post
         </button>
-      </form>
-    </ion-card>
+            </form>
+        </ion-card>
 
 
-  </ion-content>
+    </ion-content>
+
 
 </ion-view>
 
-</ion-view>
+
+<!--<ion-nav-buttons></ion-nav-buttons>-->
+<!--  <ion-content class="card-background-page">-->
+<!--    <ion-card>-->
+     
+      <!--<img  ng-src="img/icon-1.png" width="370"/>-->
+<!--      <div class="card-subtitle"><b>comments</b></div><br>-->
+<!--      <div ng-repeat="comment in commentsArray">-->
+<!--        <p>{{comment.Comment}}</p>-->
+<!--      </div>-->
+
+<!--      <form name="postfield" ng-click="submitPost(postfield)">-->
+
+<!--        <label class="item item-input">-->
+<!--            <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">-->
+<!--        </label>-->
+<!--        <button class="button button-royal" type="submit">-->
+<!--                     Post-->
+<!--        </button>-->
+<!--      </form>-->
+<!--    </ion-card>-->
+
+
+<!--  </ion-content>-->
+
+<!--</ion-view>-->
