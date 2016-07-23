@@ -1,11 +1,11 @@
 angular.module('starter.controllers')
-    .controller('feedCtrl', ['$scope', '$state','$window','mycomments', 'postRest','imageRest','myimages', function($scope,$state,$window,mycomments, postRest,imageRest,myimages){
-  
-         $scope.myprofile = mycomments;
+    .controller('feedCtrl', ['$scope', '$state', '$window', 'mycomments', 'postRest', 'imageRest', 'myimages', function($scope, $state, $window, mycomments, postRest, imageRest, myimages) {
+
+        $scope.myprofile = mycomments;
         $scope.comments = {};
         $scope.commentsArray = [];
         $scope.image = {};
-       $scope.image =myimages;
+        $scope.image = myimages;
         // imageRest.get()
         //     .then(function(response) {
         //         if (response.status == 200) {
@@ -47,8 +47,8 @@ angular.module('starter.controllers')
                         console.log("The world has ended");
                     }
                 });
-                 $scope.comments={};
+            $scope.comments = {};
         };
-       $scope.commentsArray = mycomments;
+        $scope.commentsArray = mycomments;
 
     }]);

@@ -2,3 +2,15 @@
 form label.has-errors {
   border: 1px solid red;
 }
+
+
+    ion-view.pane {
+
+    /*background: #F5DEB3;*/
+ background: url("http://www.doctormacro.com/Images/Hepburn,%20Audrey/Annex/Annex%20-%20Hepburn,%20Audrey%20(Breakfast%20at%20Tiffany's)_21.jpg")  center center fixed ;
+   /*background-repeat:no-repeat;*/
+  background-size:cover;
+   color: red !important;
+    text-shadow:  #000000;
+    }
+  

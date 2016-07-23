@@ -3,24 +3,23 @@
     <ion-content class="card-background-page">
         <ion-card>
             <div>
-            <img ng-src="{{image.image}}" width="300" height="300"/>
+                <center> <img ng-src="{{image.image}}" width="340" height="340" /></center>
             </div>
-             <div class="card-subtitle"><b>comments</b></div>
-             <div ng-repeat="post in commentsArray"> 
-             <p> {{post.Comment}}</p>
-             </div>
-            <!--<div ng-repeat="comment in commentsArray">-->
-            <!--    <p>{{comment.Comment}}</p>-->
-            <!--</div>-->
+            <div class="card-subtitle"></div>
+            <div ng-repeat="post in commentsArray">
+                <p> {{post.Comment}}</p>
+            </div>
 
             <form name="postfield" ng-click="submitPost(postfield)">
 
-         <label class="item item-input">
+                <label class="item item-input">
             <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
         </label>
-                <button class="button button-royal" type="submit" ng-click="reloadRoute()" ng-click="reloadPage">
-                     Post
-        </button>
+
+                <button class="button button-full button-dark" type="submit">
+ Post
+</button>
+
             </form>
         </ion-card>
 

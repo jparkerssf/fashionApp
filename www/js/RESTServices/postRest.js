@@ -24,6 +24,19 @@ angular.module("RESTServices")
     method: 'GET'
    });
   };
+  
+  
+  postRest.delete = function(picID) {
+   
+   return $http({
+    url: "https://myfashion-jadtheparker.c9users.io/api/Comments/DELETE" ,
+    method: 'DELETE'
+   });
+  };
+  
+
+  
+  
 
  }]);
        
