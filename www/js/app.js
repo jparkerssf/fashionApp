@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires',
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTServices'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTServices','imageService'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,17 +47,38 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTSer
     templateUrl: 'templates/tops.html',
     controller: 'topsCtrl'
   })
+  .state('picView', {
+    url: '/picView',
+    templateUrl: 'templates/picView.html',
+    controller: 'picViewCtrl',
+    cache:false,
+    resolve: {
+            mycomments: ['postRest', '$window', 
+              function(postRest, $window) {
+                return postRest.get($window.localStorage.userID, $window.localStorage.token)
+                  .then(function(res) {
+                    return res.data;
+                  }, function(err) {
+                    alert("There was an error retrieving your information");
+                  })
+              }
+            ],
+  
+}
+    
+  })
+
 
   .state('bottoms', {
-      url: '/bottoms',
-      templateUrl: 'templates/bottoms.html',
-      controller: 'bottomsCtrl'
-    })
-   
-    .state('home', {
-      url: '/home',
-      templateUrl: 'templates/home.html'
-    })
+    url: '/bottoms',
+    templateUrl: 'templates/bottoms.html',
+    controller: 'bottomsCtrl'
+  })
+
+  .state('home', {
+    url: '/home',
+    templateUrl: 'templates/home.html'
+  })
 
 
   .state('tabs', {
@@ -74,51 +95,51 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTSer
         }
       }
     })
- .state('tabs.feed', {
-    url: '/feed',
-    views: {
-      'feed': {
-        templateUrl: 'templates/feed.html',
-        controller: 'feedCtrl',
-        resolve: {
-          mycomments: ['postRest', '$window',
-            function(postRest, $window) {
-              return postRest.get($window.localStorage.userID, $window.localStorage.token)
-                .then(function(res) {
-                  return res.data;
-                }, function(err) {
-                  alert("There was an error retrieving your information");
-                })
-            }
-          ],
+    .state('tabs.feed', {
+      url: '/feed',
+      views: {
+        'feed': {
+          templateUrl: 'templates/feed.html', 
+          controller: 'feedCtrl',
+          resolve: {
+            mycomments: ['postRest', '$window', 
+              function(postRest, $window,imageService) {
+                return postRest.get($window.localStorage.userID, $window.localStorage.token)
+                  .then(function(res) {
+                    return res.data;
+                  }, function(err) {
+                    alert("There was an error retrieving your information");
+                  })
+              }
+            ],
 
-          myimages: ['$window', 'imageRest',
-            function( $window, imageRest) {
-              return imageRest.get()
-                .then(function(response) {
-                  if (response.status == 200) {
-                    $window.localStorage.picID = response.data.id;
-                    return response.data;
-                  
-                  }
-                }, function(error) {
-                  if (error.status == 404) {
-                    alert("Page not found!");
-                  }
+            myimages: ['$window', 'imageRest',
+              function($window, imageRest) {
+                return imageRest.get()
+                  .then(function(response) {
+                    if (response.status == 200) {
+                      // $window.localStorage.picID = response.data.id;
+                      return response.data;
 
-                  else if (error.status == 500) {
-                    alert("The world has ended");
-                  }
-                });
-            }
-          ]
+                    }
+                  }, function(error) {
+                    if (error.status == 404) {
+                      alert("Page not found!");
+                    }
+
+                    else if (error.status == 500) {
+                      alert("The world has ended");
+                    }
+                  });
+              }
+            ]
+          }
         }
       }
-    }
-  })
-          
-          
-      
+    })
+
+
+
   .state('tabs.profile', {
     url: '/profile',
     views: {
@@ -137,14 +158,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTSer
             }
           ],
 
+
           myimages: ['$window', 'imageRest',
-            function( $window, imageRest) {
+            function($window, imageRest) {
               return imageRest.get()
                 .then(function(response) {
                   if (response.status == 200) {
                     $window.localStorage.picID = response.data.id;
                     return response.data;
-                  
+
                   }
                 }, function(error) {
                   if (error.status == 404) {
@@ -156,9 +178,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'RESTSer
                   }
                 });
             }
+          
           ]
-
-
         }
       }
     }

@@ -1,0 +1,30 @@
+<ion-view view-title="Explorer">
+    <ion-nav-buttons>
+        <button ui-sref="tabs.feed" class="button icon-left ion-chevron-left button-dark">Back</button>
+    </ion-nav-buttons>
+    <ion-content class="card-background-page">
+        <ion-card>
+            <div>
+                <center><img ng-src="{{showPicture.image}}" width="400" height="400" /></center>
+            </div>
+            <div ng-repeat="post in commentsArray">
+                <p> {{post.Comment}}</p>
+            </div>
+
+            <form name="postfield" ng-click="submitPost(postfield)">
+
+                <label class="item item-input">
+            <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
+        </label>
+
+                <button class="button button-full button-dark" type="submit">
+ Post
+</button>
+
+
+        </ion-card>
+
+
+    </ion-content>
+
+</ion-view>

@@ -3,22 +3,26 @@
     <ion-content class="card-background-page">
         <ion-card>
             <div>
-                <center> <img ng-src="{{image.image}}" width="340" height="340" /></center>
-            </div>
-            <div class="card-subtitle"></div>
-            <div ng-repeat="post in commentsArray">
-                <p> {{post.Comment}}</p>
+                <center>
+                    <ion-item ng-repeat="images in image">
+                        <img ng-src="{{images.image}}" width="340" height="340" ng-click=goTopicture(images) />
+
+                    </ion-item>
+                </center>
             </div>
 
-            <form name="postfield" ng-click="submitPost(postfield)">
 
+            <form name="imagepost" ng-click="postImage(imagepost)">
                 <label class="item item-input">
-            <input type="text" placeholder="Post a comment:)" ng-model="comments.Comment">
-        </label> 
-                <button class="button button-full  button-dark" type="submit">
- Post
-</button>
+       <span class="input-label">Add picture</span>
+      
+       <input type="text" ng-model="picture.image" placeholder="Paste image url here">
+    <img src="{{picture.image}}" width="200px" >
+  </label>
 
+                <button class="button button-full button-dark" type="submit">
+ Post Image to Feed
+</button>
             </form>
         </ion-card>
 

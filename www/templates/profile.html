@@ -2,9 +2,7 @@
     <ion-nav-buttons></ion-nav-buttons>
     <ion-content class="card-background-page">
         <ion-card>
-            <div>
-                <center> <img ng-src="{{image.image}}" width="340" height="340" /></center>
-            </div>
+
             <div class="card-subtitle"></div>
             <div ng-repeat="post in commentsArray">
                 <p> {{post.Comment}}</p>
@@ -27,3 +25,12 @@
     </ion-content>
 
 </ion-view>
+<!--<ion-item ng-repeat="pic in items | orderBy: 'name'" ng-click=goToItem(pic)>-->
+<!--    <ion-item collection-repeat="name in user |orderBy:'location'" ng-click="goToItem(item)">-->
+<!--    <center><img src="{{pic.pic}}" width="100px"></center>-->
+<!--</ion-item>-->
+
+
+<!--<ion-item ng-repeat="pic in items | orderBy: 'name'" ng-click=goToItem(pic)>-->
+<!--    <center><img src="{{pic.pic}}" width="100px"></center>-->
+<!--</ion-item>-->
