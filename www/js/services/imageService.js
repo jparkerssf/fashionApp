@@ -2,8 +2,8 @@ angular.module('imageService',[])
 .service('imageService',['$window', function ($window) {
     var service = this;
     var pictureInfo = {
-        "image": " ",
-         "id" : " "
+        // "image": " ",
+        //  "id" : " "
     };
  
    
